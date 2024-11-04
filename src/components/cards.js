@@ -7,34 +7,28 @@ const baikalImage = new URL('https://pictures.s3.yandex.net/frontend-developer/c
 
 
 export const initialCards = [
-    {
-      name: "Архыз",
-      link: arkhyzImage,
-      alt: "Обзорный вид гор Архыза",
-    },
-    {
-      name: "Челябинская область",
-      link: chelyabinskImage,
-      alt: "Природа челябинской области зимой: река, холмы, лес",
-    },
-    {
-      name: "Иваново",
-      link: ivanovoImage,
-      alt: "Панельные дома в Иваново",
-    },
-    {
-      name: "Камчатка",
-      link: kamchatkaImage,
-      alt: "Обзорный вид гор Камчатки",
-    },
-    {
-      name: "Холмогорский район",
-      link: kholmogorskyImage,
-      alt: "Холмогорский район с природой и железнодородными путями",
-    },
-    {
-      name: "Байкал",
-      link: baikalImage,
-      alt: "Природа Байкала: горы, озеро",
-    }
+  {
+    name: "Архыз",
+    link: arkhyzImage,
+  },
+  {
+    name: "Челябинская область",
+    link: chelyabinskImage,
+  },
+  {
+    name: "Иваново",
+    link: ivanovoImage,
+  },
+  {
+    name: "Камчатка",
+    link: kamchatkaImage,
+  },
+  {
+    name: "Холмогорский район",
+    link: kholmogorskyImage,
+  },
+  {
+    name: "Байкал",
+    link: baikalImage,
+  }
 ];
