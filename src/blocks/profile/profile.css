@@ -13,6 +13,35 @@
   padding: 36px 0;
 }
 
+.profile__image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.profile__edit-icon {
+  position: absolute;
+  top: 40%;
+  left: 35%;
+  background: url('../../images/edit-icon.svg') no-repeat center center;
+  background-size: contain;
+  width: 26px;
+  height: 26px;
+  border: none;
+  background-color: transparent;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  box-sizing: content-box;
+  cursor: pointer;
+}
+
+.profile__image-wrapper:hover .profile__image {
+  filter: brightness(50%);
+}
+
+.profile__image-wrapper:hover .profile__edit-icon {
+  opacity: 1;
+}
+
 @media screen and (max-width: 480px) {
   .profile {
     padding: 43px 0;

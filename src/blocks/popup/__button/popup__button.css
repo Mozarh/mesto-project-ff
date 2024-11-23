@@ -14,9 +14,17 @@
   margin-top: 48px;
 }
 
+.popup__button_disabled {
+  background: white;
+  color: rgba(0, 0, 0, 0.2);
+  border: 2px solid currentColor;
+  cursor: not-allowed;
+}
+
 .popup__button:hover {
   background: rgba(0, 0, 0, 0.8);
   cursor: pointer;
+  transform: scale(1.05);
 }
 
 @media screen and (max-width: 568px) {
