@@ -17,14 +17,14 @@ function openPopup(popup) {
     }, 1);
     document.addEventListener("keydown", handleEscape);
 
-    const form = popup.querySelector(validationConfig.formSelector);
-    if (form) {
-        clearValidation(form, validationConfig);
-        enableValidation(validationConfig);
-    }
 }
 
 function closePopup(popup) {
+    if (!popup || !popup.classList.contains("popup_is-opened")) {
+        console.error("Попап не существует или уже закрыт");
+        return;
+    }
+
     popup.classList.remove("popup_is-opened");
 
     setTimeout(() => {

@@ -26,12 +26,7 @@ function createCard(
     likeCount.textContent = cardData.likes.length;
 
     const isLiked = cardData.likes.some((like) => like._id === userID);
-
-    if (isLiked) {
-        likeButton.classList.add("card__like-button_is-active");
-    } else {
-        likeButton.classList.remove("card__like-button_is-active");
-    }
+    likeButton.classList.toggle("card__like-button_is-active", isLiked);
 
     imageElement.addEventListener("click", () => handleImageClick(cardData));
 
@@ -51,10 +46,11 @@ function createCard(
     return cardElement;
 }
 
-function deleteCard(cardId, cardElement) {
-    apiDeleteCard(cardId)
+const deleteCard = (cardId) =>{
+    
+    return apiDeleteCard(cardId)
         .then(() => {
-            cardElement.remove();
+            console.log(`Карточка с id ${cardId} удалена`);
         })
         .catch((err) => {
             console.log("Ошибка при удалении карточек", err);
@@ -62,9 +58,10 @@ function deleteCard(cardId, cardElement) {
         });
 }
 
-function likeCard(cardData, likeButton, likeCount) {
+const likeCard = (cardData, likeButton, likeCount) => {
     const cardId = cardData._id;
     const isLiked = likeButton.classList.contains("card__like-button_is-active");
+
     if (isLiked) {
         apiRemoveLike(cardId)
             .then((updatedCard) => {
@@ -88,7 +85,7 @@ function likeCard(cardData, likeButton, likeCount) {
     }
 }
 
-function getCardsFromServer() {
+const getCardsFromServer =() => {
     return apiGetCards()
         .then((cards) => {
             console.log(cards);
@@ -99,8 +96,8 @@ function getCardsFromServer() {
         });
 }
 
-function addNewCardToServer(name, link) {
-    apiAddNewCard(name, link)
+const addNewCardToServer =(name, link) =>{
+    return apiAddNewCard(name, link)
         .then((newCard) => {
             console.log("Карточка добавлена:", newCard);
         })
