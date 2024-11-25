@@ -1,5 +1,4 @@
-import { validationConfig } from "../index.js";
-import { clearValidation, enableValidation } from "./validation";
+import { clearValidation } from "./validation";
 
 function handleEscape(evt) {
     if (evt.key === "Escape") {
@@ -10,13 +9,17 @@ function handleEscape(evt) {
     }
 }
 
-function openPopup(popup) {
+function openPopup(popup, formElement, config) {
     popup.classList.add("popup_is-animated");
     setTimeout(() => {
         popup.classList.add("popup_is-opened");
     }, 1);
-    document.addEventListener("keydown", handleEscape);
 
+    if (formElement) {
+        clearValidation(formElement, config);
+    }
+
+    document.addEventListener("keydown", handleEscape);
 }
 
 function closePopup(popup) {

@@ -18,11 +18,17 @@
   border-bottom: 1px solid #FF0000;
 }
 
+.popup__input-wrapper{
+  position: relative;
+  margin-bottom: 25px;
+}
+
 .popup__input-error {
-  display: none;
+  position: absolute;
+  left: 0;
   color: #FF0000;
   font-size: 12px;
-  margin-top: 5px;
+  display: none;
 }
 
 .popup__error_visible {

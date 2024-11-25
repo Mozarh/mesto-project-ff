@@ -1,11 +1,4 @@
-import {
-    apiDeleteCard,
-    apiLikeCard,
-    apiRemoveLike,
-    apiGetCards,
-    apiAddNewCard,
-} from "./api";
-import { openConfirmDeletePopup } from "../index";
+import { apiDeleteCard, apiLikeCard, apiRemoveLike } from "./api";
 
 function createCard(
     cardData,
@@ -33,7 +26,7 @@ function createCard(
     if (cardData.owner._id === userID) {
         deleteButton.style.display = "block";
         deleteButton.addEventListener("click", () =>
-            openConfirmDeletePopup(cardData._id, cardElement)
+            deleteCard(cardData._id, cardElement)
         );
     } else {
         deleteButton.style.display = "none";
@@ -46,8 +39,7 @@ function createCard(
     return cardElement;
 }
 
-const deleteCard = (cardId) =>{
-    
+const deleteCard = (cardId) => {
     return apiDeleteCard(cardId)
         .then(() => {
             console.log(`Карточка с id ${cardId} удалена`);
@@ -56,7 +48,7 @@ const deleteCard = (cardId) =>{
             console.log("Ошибка при удалении карточек", err);
             alert("Произошла ошибка при удалении карточки. Попробуйте позже");
         });
-}
+};
 
 const likeCard = (cardData, likeButton, likeCount) => {
     const cardId = cardData._id;
@@ -83,33 +75,6 @@ const likeCard = (cardData, likeButton, likeCount) => {
                 alert("Произошла ошибка при добавлении лайка. Попробуйте позже");
             });
     }
-}
-
-const getCardsFromServer =() => {
-    return apiGetCards()
-        .then((cards) => {
-            console.log(cards);
-            return cards;
-        })
-        .catch((err) => {
-            console.error("Ошибка при получении карточек:", err);
-        });
-}
-
-const addNewCardToServer =(name, link) =>{
-    return apiAddNewCard(name, link)
-        .then((newCard) => {
-            console.log("Карточка добавлена:", newCard);
-        })
-        .catch((err) => {
-            console.error("Ошибка при добавлении карточки:", err);
-        });
-}
-
-export {
-    createCard,
-    deleteCard,
-    likeCard,
-    getCardsFromServer,
-    addNewCardToServer,
 };
+
+export { createCard, deleteCard, likeCard };

@@ -1,11 +1,6 @@
 import "./pages/index.css";
 
-import {
-    createCard,
-    deleteCard,
-    likeCard,
-    getCardsFromServer,
-} from "./components/card.js";
+import { createCard, deleteCard, likeCard } from "./components/card.js";
 import { openPopup, closePopup } from "./components/modal.js";
 import { enableValidation } from "./components/validation.js";
 import {
@@ -13,8 +8,9 @@ import {
     apiUpdateUserInfo,
     apiAddNewCard,
     apiUpdateAvatar,
+    apiGetCards,
 } from "./components/api.js";
-import { renderLoading, handleSubmit } from "./components/utils.js";
+import { handleSubmit } from "./components/utils.js";
 
 const cardsList = document.querySelector(".places__list");
 const editProfileButton = document.querySelector(".profile__edit-button");
@@ -40,7 +36,7 @@ const popupCaption = imagePopup.querySelector(".popup__caption");
 const avatarEditButton = document.querySelector(".profile__edit-icon");
 const popupEditAvatar = document.querySelector(".popup_type_edit-avatar");
 const avatarInput = popupEditAvatar.querySelector("#avatar-input");
-const avatarForm = popupEditAvatar.querySelector("form");
+const avatarForm = document.forms["edit-avatar"];
 const confirmDeletePopup = document.querySelector(".popup_type_confirm-delete");
 const confirmDeleteButton = confirmDeletePopup.querySelector(
     ".popup__button_type_confirm"
@@ -57,10 +53,6 @@ const validationConfig = {
     inputErrorClass: "popup__input_type_error",
     errorClass: "popup__error_visible",
 };
-
-function getSaveButton(form) {
-    return form.querySelector(validationConfig.submitButtonSelector);
-}
 
 function openConfirmDeletePopup(cardId, cardElement) {
     cardForDelete = { id: cardId, cardElement };
@@ -135,7 +127,7 @@ function handleFormSubmitProfile(evt) {
 }
 
 function openEditAvatarPopup() {
-    openPopup(popupEditAvatar);
+    openPopup(popupEditAvatar, avatarForm, validationConfig);
 }
 
 avatarForm.addEventListener("submit", (event) => {
@@ -168,7 +160,7 @@ popups.forEach((popup) => {
 });
 
 window.addEventListener("DOMContentLoaded", () => {
-    Promise.all([apiGetUserInfo(), getCardsFromServer()])
+    Promise.all([apiGetUserInfo(), apiGetCards()])
         .then(([userInfo, cards]) => {
             userID = userInfo._id;
             profileTitle.textContent = userInfo.name;
@@ -185,11 +177,11 @@ window.addEventListener("DOMContentLoaded", () => {
 editProfileButton.addEventListener("click", () => {
     profileNameInput.value = profileTitle.textContent;
     profileDescriptionInputElement.value = profileDescription.textContent;
-    openPopup(editPopup);
+    openPopup(editPopup, profileForm, validationConfig);
 });
 
 addCardButton.addEventListener("click", () => {
-    openPopup(newCardPopup);
+    openPopup(newCardPopup, newCardFormElement, validationConfig);
 });
 
 avatarEditButton.addEventListener("click", openEditAvatarPopup);
@@ -197,5 +189,3 @@ profileForm.addEventListener("submit", handleFormSubmitProfile);
 newCardFormElement.addEventListener("submit", handleCardFormSubmit);
 
 enableValidation(validationConfig);
-
-export { validationConfig, openConfirmDeletePopup };
