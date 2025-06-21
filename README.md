@@ -15,7 +15,7 @@
 ## Ссылки и макет
 * URL решения: [Github](https://github.com/Mozarh/mesto-project-ff);
 * Макет задания: [Figma](https://www.figma.com/design/BOu4PyRg0j7B70CHFy6jY3/5-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82.-JavaScript?node-id=0-1);
-* URL лайв сервера: [Демо версия]().
+* URL лайв сервера: [Демо версия](https://mozarh.github.io/mesto-project-ff/).
 
 ## Скриншот
 ![image](https://github.com/user-attachments/assets/3dde49e6-f135-4c3a-a162-eca3d88eb11e)
